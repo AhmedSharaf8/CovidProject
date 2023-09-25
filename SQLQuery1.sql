@@ -124,3 +124,10 @@ JOIN CovidDeaths ON CovidDeaths.location = CovidVac.location
 GROUP BY CovidVac.location, CovidDeaths.population, #VacPeople.people_fully_vaccinated
 ORDER BY 1
 
+--Total Cases and Percent Infected
+SELECT location, population, date, ISNULL(MAX(total_cases),0) AS HighestInfectionCount, ISNULL(MAX(total_cases) / population * 100,0) AS PercentPopulationInfected
+FROM CovidDeaths
+GROUP BY location, population, date
+ORDER BY 5 DESC
+
+
